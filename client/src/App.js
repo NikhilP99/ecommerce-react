@@ -1,11 +1,35 @@
 import React, { Component } from 'react';
-
+import Products from './components/Products'
 
 class App extends Component {
+
+  state = {
+    products : [],
+    filtProducts : []
+  }
+
+  componentWillMount() {
+    fetch("http://localhost:5000/api/products")
+    .then(res => res.json())
+    .then(data => this.setState({
+      products : data.products,
+      filtProducts : data.products
+    }))
+  }
+
   render() {
     return (
-      <div className="App">
-        <p>This will be fun</p>
+      <div className="container">
+
+        <div className="row text-center">
+          <div className="offset-md-4 col-md-4"><h1>Buy T-Shirts here</h1></div>
+        </div>
+        <div className="row">
+          <div className="offset-md-2 col-md-8">
+            <Products filtProducts={this.state.filtProducts} />
+          </div>
+        </div>
+
       </div>
     );
   }
