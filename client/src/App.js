@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import Products from './components/Products'
+import Filters from './components/Filters'
 
 class App extends Component {
 
   state = {
     products : [],
-    filtProducts : []
+    filtProducts : [],
+    sortType : "",
+    size : ""
   }
 
   componentWillMount() {
@@ -17,23 +20,79 @@ class App extends Component {
     }))
   }
 
-  render() {
-    return (
-      <div className="container">
-
-        <div className="row text-center">
-          <div className="offset-md-4 col-md-4"><h1>Buy T-Shirts here</h1></div>
-        </div>
-        <div className="row">
-          <div className="offset-md-2 col-md-8">
-            <Products filtProducts={this.state.filtProducts} />
-          </div>
-        </div>
-
-      </div>
-    );
+  changeSort = (e) => {
+    this.setState({
+      sortType : e.target.value
+    })
+    //console.log(e.target.value)
+    this.sortList();
   }
-}
+
+  changeSize = (e) => {
+    this.setState({
+      size : e.target.value
+    })
+    //console.log(e.target.value)
+    this.sortList();
+  }
+
+  sortList = () => {
+    this.setState(state => {
+      if(state.sortType !== ""){            //sort by price
+        state.products.sort(function(a,b){
+          if(state.sortType === "highToLow"){
+            return b.price-a.price
+          }
+          if(state.sortType === "lowToHigh"){
+            return a.price-b.price
+          }
+        })
+      }else {               //sort by id
+        state.products.sort(function(a,b){
+          return a.id-b.id
+        })
+      }
+
+      if(state.size !== ""){              // sort the already price-sorted products by size
+          return {filtProducts : state.products.filter(a => {
+            return (a.availableSizes.indexOf(state.size) >= 0)
+          })
+        }
+         }
+      return {
+        filtProducts : state.products
+      }
+
+    })
+    }
+
+    render() {
+      return (
+        <div className="container">
+
+          <div className="row text-center">
+            <div className="offset-md-4 col-md-4"><h1>Buy T-Shirts here</h1></div>
+          </div>
+          <hr/>
+
+          <div className="row">
+            <div className="offset-md-2 col-md-8">
+              <Filters count={this.state.filtProducts.length} changeSort={this.changeSort} changeSize={this.changeSize}/>
+            </div>
+          </div>
+          <hr/>
+
+        <div className="row">
+            <div className="offset-md-2 col-md-8">
+              <Products filtProducts={this.state.filtProducts} />
+            </div>
+          </div>
+
+        </div>
+      );
+    }
+  }
+
 
 export default App;
 
