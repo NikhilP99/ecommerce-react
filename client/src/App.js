@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Products from './components/Products'
-import Filters from './components/Filters'
-import Cart from './components/Cart'
+import Products from './components/Product/Products'
+import Filters from './components/Filter/Filters'
+import Cart from './components/Cart/Cart'
 
 class App extends Component {
 
@@ -98,34 +98,34 @@ class App extends Component {
     })
   }
 
+  // <div className="col-md-3 col-sm-3 col-xs-3" >
+  //   <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCart} />
+  // </div>
+
+
+  // <div className="row">
+  //   <div className="col-md-8">
+  //     <Filters count={this.state.filtProducts.length} changeSort={this.changeSort} changeSize={this.changeSize}/>
+  //   </div>
+  // </div>
 
   render() {
     return (
-      <div className="container">
+      <div className="wrapper">
+        <div className="container">
 
-        <div className="row text-center">
-          <div className="offset-md-4 col-md-4"><h1>Buy T-Shirts here</h1></div>
-        </div>
-        <hr/>
 
-        <div className="row">
-          <div className="offset-md-2 col-md-8">
-            <Filters count={this.state.filtProducts.length} changeSort={this.changeSort} changeSize={this.changeSize}/>
-          </div>
-        </div>
-        <hr/>
 
-      <div className="row">
-          <div className="offset-md-2 col-md-8">
-            <Products filtProducts={this.state.filtProducts} addToCart={this.addToCart} />
-          </div>
-
-          <div className="col-md-4">
-            <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCart} />
+          <div className="row">
+            <div className="col-md-3 col-sm-3">
+              <Filters count={this.state.filtProducts.length} changeSort={this.changeSort} changeSize={this.changeSize}/>
+            </div>
+            <div className="col-md-9 col-sm-9 col-xs-12">
+              <Products filtProducts={this.state.filtProducts} addToCart={this.addToCart} />
+            </div>
           </div>
 
         </div>
-
       </div>
     );
   }

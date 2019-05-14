@@ -42,24 +42,11 @@
       "isFreeShipping": true
     },
 
-    {
-      "id": 15,
-      "sku": 11033926921508487,
-      "title": "Skuul",
-      "description": "Treino 2014",
-      "availableSizes": ["X", "L", "XL", "XXL"],
-      "style": "Black T-Shirt with front print",
-      "price": 14.0,
-      "installments": 5,
-      "currencyId": "USD",
-      "currencyFormat": "$",
-      "isFreeShipping": true
-    },
 
     {
       "id": 11,
       "sku": 39876704341265606,
-      "title": "Wine Skul T-Shirt",
+      "title": "Wine Double Skuul T-Shirt",
       "description": "",
       "availableSizes": ["X", "L"],
       "style": "Wine",
