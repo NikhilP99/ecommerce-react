@@ -20,7 +20,7 @@ const Products = ({filtProducts,addToCart}) => {
         <div>
           <p> <small className="dollar">$</small><span className="price"> {product.price}</span></p>
           {shippingtag}
-          <div class="button_cont" align="center"><a onClick={(e) => {addToCart(e,product)}} class="example_c">Add to Cart</a></div>
+          <div className="button_cont" align="center"><a onClick={(e) => {addToCart(e,product)}} className="example_c">Add to Cart</a></div>
         </div>
 
     </div>

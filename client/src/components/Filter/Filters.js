@@ -11,10 +11,10 @@ class Filters extends Component {
       <div className="col-md-12 col-sm-12 col-xs-6 sort-price">
 
         <form className="sort-form">
-      <div class="form-group">
-        <label for="inputState">Sort by Price: </label>
-        <select id="inputState" onChange={this.props.changeSort} class="form-control">
-          <option value="" selected>Select</option>
+      <div className="form-group">
+        <label htmlFor="inputState">Sort by Price: </label>
+        <select id="inputState" onChange={this.props.changeSort} className="form-control">
+          <option value="" >Select</option>
           <option value="highToLow">Highest to lowest</option>
           <option value="lowToHigh">Lowest to Highest</option>
         </select>
@@ -27,10 +27,10 @@ class Filters extends Component {
       <div className="col-md-12 col-sm-12 col-xs-6 sort-size">
         <form className="sort-form">
 
-          <div class="form-group">
-            <label for="inputState">Sort by Size: </label>
-            <select id="inputState" onChange={this.props.changeSize} class="form-control">
-              <option value="" selected>Select</option>
+          <div className="form-group">
+            <label htmlFor="inputState">Sort by Size: </label>
+            <select id="inputState" onChange={this.props.changeSize} className="form-control">
+              <option value="" >Select</option>
               <option value="XS">XS</option>
               <option value="S">S</option>
               <option value="M">M</option>

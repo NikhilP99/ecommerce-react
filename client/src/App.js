@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Products from './components/Product/Products'
 import Filters from './components/Filter/Filters'
 import Cart from './components/Cart/Cart'
+import './index.css'
 
 class App extends Component {
 
@@ -78,6 +79,16 @@ class App extends Component {
     })
   }
 
+
+  giveTotalItems = () => {
+    var cartTotalcount = 0;
+    const cartItems = this.state.cart
+    for (var i=0;i<cartItems.length;i++) {
+      cartTotalcount += cartItems[i].count
+    }
+    return cartTotalcount;
+  }
+
   addToCart = (e,product) => {
     const cartItems = this.state.cart ;
     var productInCart = false;
@@ -103,29 +114,38 @@ class App extends Component {
   // </div>
 
 
-  // <div className="row">
-  //   <div className="col-md-8">
-  //     <Filters count={this.state.filtProducts.length} changeSort={this.changeSort} changeSize={this.changeSize}/>
-  //   </div>
-  // </div>
-
   render() {
     return (
       <div className="wrapper">
-        <div className="container">
 
 
 
-          <div className="row">
-            <div className="col-md-3 col-sm-3">
-              <Filters count={this.state.filtProducts.length} changeSort={this.changeSort} changeSize={this.changeSize}/>
-            </div>
-            <div className="col-md-9 col-sm-9 col-xs-12">
-              <Products filtProducts={this.state.filtProducts} addToCart={this.addToCart} />
+        <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCart} />
+
+        <div id="content">
+
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+              <div className="container-fluid">
+
+                  <button type="button" id="sidebarCollapse" className="btn btn-info" style={{background:'#eac03b'}}>
+                      <i className="fas fa-align-left"></i>
+                      <span>Cart ({this.giveTotalItems()})</span>
+                  </button>
+              </div>
+          </nav>
+
+          <div className="container">
+            <div className="row">
+              <div className="col-md-3 col-sm-3">
+                <Filters count={this.state.filtProducts.length} changeSort={this.changeSort} changeSize={this.changeSize}/>
+              </div>
+              <div className="col-md-9 col-sm-9 col-xs-12">
+                <Products filtProducts={this.state.filtProducts} addToCart={this.addToCart} />
+              </div>
             </div>
           </div>
-
         </div>
+
       </div>
     );
   }
